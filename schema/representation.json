@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/foss-earth/equirectangular/schema/representation.json",
+  "title": "equirectangular representation, scene version 1",
+  "required": [
+    "id",
+    "role",
+    "projection",
+    "mimeType",
+    "encodedBytes",
+    "width",
+    "height",
+    "url"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "role": {
+      "enum": [
+        "preview",
+        "immersion"
+      ]
+    },
+    "projection": {
+      "const": "equirectangular"
+    },
+    "mimeType": {
+      "enum": [
+        "image/jpeg",
+        "image/png"
+      ]
+    },
+    "encodedBytes": {
+      "$ref": "#/$defs/positiveInteger",
+      "description": "The prepared files' total bytes, six faces summed for a cube, every tile for a tiled cube."
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions"
+    },
+    "width": {
+      "$ref": "#/$defs/positiveInteger",
+      "description": "Twice the height: a full 2:1 image."
+    },
+    "height": {
+      "$ref": "#/$defs/positiveInteger"
+    },
+    "url": {
+      "$ref": "#/$defs/url"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-]+$",
+      "description": "Case-sensitive ASCII, unique in its scope."
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Namespaced data for later features. Never executed.",
+      "propertyNames": {
+        "$ref": "#/$defs/extensionKey"
+      },
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "extensionKey": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+(\\.[A-Za-z0-9_-]+)+$",
+      "description": "An owner, then a name: \"owner.name\"."
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1,
+      "description": "http(s), absolute or relative to the manifest's final response URL; no credentials."
+    }
+  }
+}

@@ -1,0 +1,659 @@
+{
+  "schemaVersion": 2,
+  "sourceRevision": "90e23b3ee96f53ec5900afc5991a21fffa58649d",
+  "owner": "foss-earth/equirectangular",
+  "package": "@foss-earth/equirectangular",
+  "version": "0.1.0",
+  "license": "AGPL-3.0-only",
+  "sourceMaps": [
+    {
+      "sourcePath": "src/scenes/format.ts",
+      "sourceBlob": "d17f92db372fc717f79299883273381dc62093f1",
+      "sourceSha256": "2971a50f5f0c99623dc1da3ef83412f8d8d2100c081081e1556d1749fff6cc81",
+      "sourceBytes": 10570,
+      "destinations": [
+        {
+          "path": "src/representation.ts",
+          "sha256": "3cfa7fa0c623d27f506b1e95a379a0d681c2808b3fb1439632a1be01901b8139",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "CubeRepresentation/EquirectRepresentation responsibility slice; common envelopes stay images/scenes"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/validateScene.ts",
+      "sourceBlob": "d864e4825e9809efb29f162b76e66d7869accecd",
+      "sourceSha256": "c3666bdfbe6b27b59229652a1b784861268b789db9a364cc0ebfc53c9962e0d4",
+      "sourceBytes": 42097,
+      "destinations": [
+        {
+          "path": "src/representation.ts",
+          "sha256": "3cfa7fa0c623d27f506b1e95a379a0d681c2808b3fb1439632a1be01901b8139",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "representation-specific strict fields, full source face/full sphere dimensions and resolved URLs"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/budget.ts",
+      "sourceBlob": "e90822ddd01fcc6b7ed137d98960e61d600400f2",
+      "sourceSha256": "bad5aa6efb442860c9f482d52464ef71cb03fd6710457774e041df46e38898fc",
+      "sourceBytes": 13913,
+      "destinations": [
+        {
+          "path": "src/representation.ts",
+          "sha256": "3cfa7fa0c623d27f506b1e95a379a0d681c2808b3fb1439632a1be01901b8139",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "whole source encoded/decoded/GPU mip/staging estimates; shared pools supplied"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/foss-earth-scene-1.schema.json",
+      "sourceBlob": "a83ccf08f8652f8d7f61af1117d45c0635ec4360",
+      "sourceSha256": "6ed4f3361c86b4c408ed09eb4b90c332250f8ab6fdf20bd13bc32d5fd8cd87e4",
+      "sourceBytes": 25024,
+      "destinations": [
+        {
+          "path": "schema/representation.json",
+          "sha256": "bc99a4669cf959d92b7e3f6ca3b22aac260bcd0bb4836b49d4cf71a5e3d18ef7",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "representation definition with retained common field definitions; ownership documentation link updated"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/panoramaResources.ts",
+      "sourceBlob": "d9791774a301fed0bd074f5ed98f94956cd5edf2",
+      "sourceSha256": "d1311f2eb3af959ad612b9eb53de30a0fc9841f3fce8b7772dcb08e84451e13e",
+      "sourceBytes": 35875,
+      "destinations": [
+        {
+          "path": "src/browser/index.ts",
+          "sha256": "92ccefb974b2fb44186672806f05b80881a4c4a1cdbba1327db49e50f38b69c5",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "whole-image acquisition/decode/readiness/replacement lifecycle through injected common host ports; throwing cleanup now attempted completely"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/engine/babylon/panorama/panoramaTextures.ts",
+      "sourceBlob": "722ef56be4d208cede92f1731baf5585b48ae6bb",
+      "sourceSha256": "6469832d19e50172e15dfc6589ffa4047b266c99f426d616a9f73befc56cec68",
+      "sourceBytes": 9516,
+      "destinations": [
+        {
+          "path": "src/browser/babylon.ts",
+          "sha256": "5c8023a6ef0e8aa549af52bf81c84403696d86d05828d0305c686e317ee9a351",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "source representation conventions only; generic allocation/upload/completion is supplied renderer"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/engine/babylon/panorama/panoramaShaders.ts",
+      "sourceBlob": "c78ca8b124c65925fd9d07b481d5ebfa1a1e110b",
+      "sourceSha256": "85d6a817382c02849a96c45d4cd10a0dd86b54536828be18c6b5cc90c49fb425",
+      "sourceBytes": 15207,
+      "destinations": [
+        {
+          "path": "src/shaders.ts",
+          "sha256": "10473087785e2abb44c124460f1fbc2108b3e8d9184c986a94bafa3f4dc7e78c",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "owned source-sampling WGSL fragments only, with no viewer/material allocation"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/engine/babylon/panorama/panoramaShadersWebGL.ts",
+      "sourceBlob": "129533f6e8a93ea1c76f8192f98d5d00c0ea5d71",
+      "sourceSha256": "c87f75894ae5a51a6d22a9fd972567d29ed699621dc1201966b2c01d6b2dec62",
+      "sourceBytes": 14559,
+      "destinations": [
+        {
+          "path": "src/shaders.ts",
+          "sha256": "10473087785e2abb44c124460f1fbc2108b3e8d9184c986a94bafa3f4dc7e78c",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "owned source-sampling GLSL fragments including retained optional-gradient fallback"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/panoramaMath.test.ts",
+      "sourceBlob": "28f90a9de6bfd92829a1ed60d26fe161ba6c2ca3",
+      "sourceSha256": "6adf79d0197516faa391c42251b8df6a9df4973a62cbb690e486f01c0d5d828a",
+      "sourceBytes": 10208,
+      "destinations": [
+        {
+          "path": "src/core.test.ts",
+          "sha256": "a046ea7ed5712d451844c00c7d129338fbb4452b469fedcbec300c5617b4c9f1",
+          "kind": "test-adaptation",
+          "scope": "retained relevant geometric convention and face/layer or pole/seam cases, routed through owner public source barrels"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/validateScene.test.ts",
+      "sourceBlob": "aea08af435eda0d8530b4a68901e6de4f457b497",
+      "sourceSha256": "5797d509c396c598254c1839f1efca3ac9c1a5c16b6cad519ad691c9593acbcc",
+      "sourceBytes": 19822,
+      "destinations": [
+        {
+          "path": "src/core.test.ts",
+          "sha256": "a046ea7ed5712d451844c00c7d129338fbb4452b469fedcbec300c5617b4c9f1",
+          "kind": "test-adaptation",
+          "scope": "retained relevant representation validation cases; envelope/schema catalog stays scenes"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/budget.test.ts",
+      "sourceBlob": "4f7b2585f39f6f5d6106b236edd2f7ffb042b563",
+      "sourceSha256": "a18ebdd73e644a99ba935e262f37af1e5d38dd95ad9d0ae21d96afa2887bdc53",
+      "sourceBytes": 8387,
+      "destinations": [
+        {
+          "path": "src/core.test.ts",
+          "sha256": "a046ea7ed5712d451844c00c7d129338fbb4452b469fedcbec300c5617b4c9f1",
+          "kind": "test-adaptation",
+          "scope": "relevant resource estimate assertion; full settings/pool cases remain common owners"
+        }
+      ]
+    },
+    {
+      "sourcePath": "NOTICE",
+      "sourceBlob": "cd6a1d92cce505eaeea37e9726a2f98a0a61a12d",
+      "sourceSha256": "323da85db96d02ed0cf48db889efa184037f538f002e868aeeff396ebb44a993",
+      "sourceBytes": 359,
+      "destinations": [
+        {
+          "path": "NOTICE",
+          "sha256": "323da85db96d02ed0cf48db889efa184037f538f002e868aeeff396ebb44a993",
+          "kind": "retained-license-notice",
+          "scope": "original attribution notice"
+        }
+      ]
+    },
+    {
+      "sourcePath": "LICENSE",
+      "sourceBlob": "be3f7b28e564e7dd05eaf59d64adba1a4065ac0e",
+      "sourceSha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+      "sourceBytes": 34523,
+      "destinations": [
+        {
+          "path": "LICENSE",
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "kind": "retained-license-notice",
+          "scope": "original AGPL-3.0-only license text"
+        }
+      ]
+    },
+    {
+      "sourcePath": "src/scenes/panoramaMath.ts",
+      "sourceBlob": "c4193c7932266639ec58e72000a2edb38f22c705",
+      "sourceSha256": "071a5fbcb150ace6d3f26fd7164ed06924ad5b4c0b5ce5c8b8ea854593660e68",
+      "sourceBytes": 20181,
+      "destinations": [
+        {
+          "path": "src/core.ts",
+          "sha256": "31c959ec9d87eac22d7ab6ad26856ad6107dfb6c0af2966c833eba1bdd574e11",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "whole equirectangular direction/coordinates and density helper"
+        }
+      ]
+    },
+    {
+      "sourcePath": "scripts/lib/panoramaImage.mjs",
+      "sourceBlob": "4e5b38536812b9505cdabb8b506eb06da32f654d",
+      "sourceSha256": "4aeac1958ee2ff3417c3b84c785c9ee206fa9fcad2fd1fd782288652ab19d5e4",
+      "sourceBytes": 25194,
+      "destinations": [
+        {
+          "path": "src/preparation.ts",
+          "sha256": "4d017cb420b948f0fe93217b73f6e7292a5db913d08d08eaf9cc5c0815a20d77",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "area-average pyramid, seam/pole sample, source-side cube prefilter policy"
+        },
+        {
+          "path": "src/cardinal.ts",
+          "sha256": "ff85b390a19aa31f6f6871695879683e8aa68f269a5859623b2c3511121defdd",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "typed original cardinal generator and letter/grid/pole structures, Uint8Array output and input guard"
+        },
+        {
+          "path": "fixtures/original-cardinal.mjs",
+          "sha256": "c349f41781f2134131fd1adbe39b715c4f28e6be9dbf4a90c05ccc1acd9a42d5",
+          "kind": "exact-original-test-oracle",
+          "scope": "exact original source slice from // Stroke letters on a unit box to EOF; retained test oracle, not production codec/backend",
+          "sourceSlice": {
+            "startLine": 492,
+            "endLine": 551,
+            "sha256": "4756154321f642de9f4bc5743909c5d3db43ede0dc6e52813510a5e1e824f835"
+          }
+        }
+      ]
+    },
+    {
+      "sourcePath": "scripts/lib/panoramaImage.test.mjs",
+      "sourceBlob": "a4d8d80adea7b9006542c04f6d482f9e829b0d3b",
+      "sourceSha256": "913da07b0272a730c10b08765e37b5b1022c674086ef6bb1896c2ccc702500b5",
+      "sourceBytes": 6681,
+      "destinations": [
+        {
+          "path": "tests/preparation.test.ts",
+          "sha256": "5cbf65f353a1a79957344c486eb3dc0ce0168f2879fb8fdaab4c2cdbd1236a5b",
+          "kind": "test-adaptation",
+          "scope": "retained original cube-preparation gradient cases through both owners public APIs; new coverage/orientation/linear/cardinal tests alongside"
+        }
+      ]
+    },
+    {
+      "sourcePath": "scripts/prepare-panorama.mjs",
+      "sourceBlob": "0c24feed78bf33b85d9f8a33fc0110085dc2ce63",
+      "sourceSha256": "9975fa188bdb6fbf1f4a353aef3f4133116360de65dbc3cd85a5772a3d276512",
+      "sourceBytes": 17200,
+      "destinations": [
+        {
+          "path": "src/preparation.ts",
+          "sha256": "4d017cb420b948f0fe93217b73f6e7292a5db913d08d08eaf9cc5c0815a20d77",
+          "kind": "responsibility-slice-adaptation",
+          "scope": "original checkCoverage function exported as validatePreparationCoverage; command/envelope composition remains scenes/host"
+        }
+      ]
+    }
+  ],
+  "authoredFiles": [
+    {
+      "path": ".attribution-release.json",
+      "sha256": "c5324ea9476d99afbc5f63e9d5a15d597dd7ee27546499c392046b55fc361131",
+      "bytes": 2045,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": ".attribution.json",
+      "sha256": "e4493f3031a5051398339cf9649a8e18efb8ece96f512761d8d145daf8347f7a",
+      "bytes": 491,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": ".github/workflows/attribution-check.yml",
+      "sha256": "63349507da9d004752bb0e43c681089dfd9fd6c26bf8047738cb19025f15135e",
+      "bytes": 406,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "b93944dbf95cad1850d916ab7483bccf6251109364e63f7e5802ae656a4a93fb",
+      "bytes": 41,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "9f5a409f49bd2bc81c93a8a0699fc868a9e31dab495ef9020f6434315c93ea4e",
+      "bytes": 382,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "9cffe385c472d7466e980f1b9859b4f446ed729e924dbc8bde667896dfa187d1",
+      "bytes": 1668,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "README.md",
+      "sha256": "022e8094c055fdab23f319fb48f8eba5e67f7a939d2b986377026e47db01c57b",
+      "bytes": 2637,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "docs/native-input-lifetime.md",
+      "sha256": "171fff68e294374926c67cca8664ccdcfd429858b1a6d99ec361a0cab39f39fd",
+      "bytes": 3125,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "docs/public-contracts.md",
+      "sha256": "307f9096c6b39a65126ed84f4e5713c1838c80384eca530f0718668933dd2047",
+      "bytes": 6147,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "docs/validation.md",
+      "sha256": "43bab6eb3fdb7eedacf322c8cef8486eca81079bc3e4603ccd1c8e6a6a2368a7",
+      "bytes": 5653,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "eslint.config.js",
+      "sha256": "bef5fe411af7834ad26027b4a970db038620dc586ce587deee7b660318741138",
+      "bytes": 478,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "fixtures/composition/host-ports.ts",
+      "sha256": "79523f69a79ee8ac12de1736ad1040f0c9f9f292b38e5c970c731c92fd97022e",
+      "bytes": 1303,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "fixtures/installed-consumer.mjs",
+      "sha256": "bec1dacab7471f37d9f6f830399634ff2d25f33a8ffcbb646c6731308603707b",
+      "bytes": 6400,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "fixtures/original-cardinal.d.mts",
+      "sha256": "825a70664dbd6bdf9a7e282a6e6520d78f26f69bf1ee972384cfe932f60048f3",
+      "bytes": 123,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "fixtures/public-types.ts",
+      "sha256": "e5aa8f6cc9bb78a764992957d7f93a5dee8131fe37811399463eb4f3adcfd91e",
+      "bytes": 1573,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "package.json",
+      "sha256": "bec9ac371eb4ff3f786fec5e2244c03060b0b876e56a8a0d4dc6337d635c6f86",
+      "bytes": 2699,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "scripts/check-installed-artifact.mjs",
+      "sha256": "62f502ea4a18a46641a7f3aca142bdb3efb7f653888fa52114b8e2cbf8b9e69e",
+      "bytes": 8220,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "src/index.ts",
+      "sha256": "3490b5ec8ebf8da8b9ef6342315f7e6b75a239783e72f68aa9759c640de21f5e",
+      "bytes": 98,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "tests/common-services.test.ts",
+      "sha256": "b1c30e8d48a7c5511b19c813aa449dd6b28b08880ed97a126a94eb34310e79cb",
+      "bytes": 5114,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "tests/load.test.ts",
+      "sha256": "2690776f6583f59d1a8a2aada8a455a6785c53123804f501c1d677150f999b4c",
+      "bytes": 5927,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "tests/minimal-consumer.ts",
+      "sha256": "b74d03233d51510dbd59a8a816e9ca8ca2695fc7639de9968b6853c302ae22df",
+      "bytes": 677,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "tests/tsconfig.json",
+      "sha256": "c8487381046b2cac542337f316ec02ca4383a52f4791a055e3231d74119c0794",
+      "bytes": 325,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "tests/uploadAdapter.test.ts",
+      "sha256": "ca2ad3e9060ffa21bd989ccf711ebfdaa160ce75bbe82750e4f5215223ba1453",
+      "bytes": 2008,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d651eea9e4473e1a7eccc8ef43563bab184af90c1128483d4678219ceeecde47",
+      "bytes": 548,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "1a80271093a3155feb04843b4fe1a93eab367df460399c7e14d2474cb6d5c249",
+      "bytes": 240,
+      "status": "authored extraction/adapter/fixture/docs source; UNRUN"
+    }
+  ],
+  "scope": {
+    "currentAppChanged": false,
+    "dirtyInputsConsumed": false,
+    "otherDestinationsWritten": false,
+    "sourceOnly": true
+  },
+  "cleanedLineage": "primary integration pending",
+  "policyCallerPin": null,
+  "artifact": null,
+  "validation": "not run; source-only lease",
+  "nativeUploadInputHoldIncrement": {
+    "createdAtUtc": "2026-10-09T17-50-14Z-native-upload-input-holds",
+    "status": "SOURCE ONLY / UNRUN; metadata reads and hashing only",
+    "ownedDestinations": [
+      "foss-earth/equirectangular",
+      "foss-earth/cubemap",
+      "foss-earth/preview-sheets"
+    ],
+    "publicContract": "Optional CubeFaceSource.retain(): () => void in Cubemap and Preview-sheets browser ports; actual common decoded retains acquired before host upload, held through settlement and late-output cleanup. Equirectangular uses the common HeldDecodedImage retain directly.",
+    "compatibility": "Existing foreign sources/decoders may omit retain; native input lifetime remains explicitly unqualified. No fabricated hold, duplicate broker, renderer or decoded charge.",
+    "uploadContract": "Host promise settlement must prove input use has stopped. Cancellation alone is not native completion. An unresolved native upload retains its input hold.",
+    "addedCausalCases": 10,
+    "casesExecuted": 0,
+    "publicConsumerFixtureExecuted": false,
+    "orderedCleanup": "Primary failure, output disposal errors, input disposal errors; every cleanup attempted; idempotent releases and final publication generation guard.",
+    "sourceMapImmutableSelectionSha256": "08cca8fe61d1fcde3c1af50a4380830beabd7c0bbbc5f926bbcf3190a77bc9dd",
+    "dependenciesChanged": false,
+    "locksChanged": false,
+    "sourceRemoved": false,
+    "canonicalAppChanged": false,
+    "acceptedArtifacts": [],
+    "actualConsumerAdoption": null
+  },
+  "installedHarnessSourceCorrection": {
+    "status": "SOURCE-ONLY; strict qualification and all new causal fixture changes UNRUN",
+    "exclusiveAssignment": "Earth handoff 2026-10-09T19:13Z",
+    "beforeEvidence": "build/source-only/2026-10-09T19-18-09Z-installed-harness-corrections",
+    "beforeManifestSha256": "bc5eb256024c6d5cdfe900972426fd0e78c31bc991569a0f68bed25ac8e89bb8",
+    "changes": [
+      "Installed physical package name, pinned version and package/manifest realpaths verified for every explicit archive",
+      "Public declaration qualification uses skipLibCheck:false; original pure declaration and browser type-library choices are preserved",
+      "No runtime production, public export, dependency or lock changes",
+      "Actual uploadEquirect callback spelling repairs retained common native cancellation and throwing late-output fixture"
+    ],
+    "files": [
+      {
+        "path": "fixtures/installed-consumer.mjs",
+        "sha256": "bec1dacab7471f37d9f6f830399634ff2d25f33a8ffcbb646c6731308603707b",
+        "bytes": 6400
+      },
+      {
+        "path": "scripts/check-installed-artifact.mjs",
+        "sha256": "62f502ea4a18a46641a7f3aca142bdb3efb7f653888fa52114b8e2cbf8b9e69e",
+        "bytes": 8220
+      },
+      {
+        "path": "docs/validation.md",
+        "sha256": "43bab6eb3fdb7eedacf322c8cef8486eca81079bc3e4603ccd1c8e6a6a2368a7",
+        "bytes": 5653
+      }
+    ],
+    "checksExecuted": [],
+    "acceptedArtifact": null
+  },
+  "primarySourceSnapshot": {
+    "createdAtUtc": "2026-10-09T19-28-20Z",
+    "status": "source-only; no qualification or artifact seal",
+    "authoredFiles": [
+      {
+        "path": ".attribution-release.json",
+        "sha256": "c5324ea9476d99afbc5f63e9d5a15d597dd7ee27546499c392046b55fc361131",
+        "bytes": 2045,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": ".attribution.json",
+        "sha256": "e4493f3031a5051398339cf9649a8e18efb8ece96f512761d8d145daf8347f7a",
+        "bytes": 491,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": ".gitignore",
+        "sha256": "b93944dbf95cad1850d916ab7483bccf6251109364e63f7e5802ae656a4a93fb",
+        "bytes": 41,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "AGENTS.md",
+        "sha256": "9f5a409f49bd2bc81c93a8a0699fc868a9e31dab495ef9020f6434315c93ea4e",
+        "bytes": 382,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "CODE_OF_CONDUCT.md",
+        "sha256": "c3a907b9e659a0f5a4c701be1b34a7d416526c3a99f129bf4d3b9db09c7ffa9d",
+        "bytes": 3442,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "CONTRIBUTING.md",
+        "sha256": "9cffe385c472d7466e980f1b9859b4f446ed729e924dbc8bde667896dfa187d1",
+        "bytes": 1668,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "README.md",
+        "sha256": "022e8094c055fdab23f319fb48f8eba5e67f7a939d2b986377026e47db01c57b",
+        "bytes": 2637,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "SECURITY.md",
+        "sha256": "6baf6d3c1755360f5d902275c893074fd17af2fc10c140fe932b8a90d77d9942",
+        "bytes": 791,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "SOURCE_LINEAGE.json",
+        "sha256": "b9cf385a9424854d9ab8bc74c471ec5e0d7cc6ed152ca0711014beb0c404659d",
+        "bytes": 4950,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "eslint.config.js",
+        "sha256": "bef5fe411af7834ad26027b4a970db038620dc586ce587deee7b660318741138",
+        "bytes": 478,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "package.json",
+        "sha256": "bec9ac371eb4ff3f786fec5e2244c03060b0b876e56a8a0d4dc6337d635c6f86",
+        "bytes": 2699,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d651eea9e4473e1a7eccc8ef43563bab184af90c1128483d4678219ceeecde47",
+        "bytes": 548,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "vitest.config.ts",
+        "sha256": "1a80271093a3155feb04843b4fe1a93eab367df460399c7e14d2474cb6d5c249",
+        "bytes": 240,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": ".github/workflows/attribution-check.yml",
+        "sha256": "63349507da9d004752bb0e43c681089dfd9fd6c26bf8047738cb19025f15135e",
+        "bytes": 406,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "docs/native-input-lifetime.md",
+        "sha256": "171fff68e294374926c67cca8664ccdcfd429858b1a6d99ec361a0cab39f39fd",
+        "bytes": 3125,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "docs/public-contracts.md",
+        "sha256": "307f9096c6b39a65126ed84f4e5713c1838c80384eca530f0718668933dd2047",
+        "bytes": 6147,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "docs/validation.md",
+        "sha256": "43bab6eb3fdb7eedacf322c8cef8486eca81079bc3e4603ccd1c8e6a6a2368a7",
+        "bytes": 5653,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "fixtures/installed-consumer.mjs",
+        "sha256": "bec1dacab7471f37d9f6f830399634ff2d25f33a8ffcbb646c6731308603707b",
+        "bytes": 6400,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "fixtures/original-cardinal.d.mts",
+        "sha256": "825a70664dbd6bdf9a7e282a6e6520d78f26f69bf1ee972384cfe932f60048f3",
+        "bytes": 123,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "fixtures/public-types.ts",
+        "sha256": "e5aa8f6cc9bb78a764992957d7f93a5dee8131fe37811399463eb4f3adcfd91e",
+        "bytes": 1573,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "fixtures/composition/host-ports.ts",
+        "sha256": "79523f69a79ee8ac12de1736ad1040f0c9f9f292b38e5c970c731c92fd97022e",
+        "bytes": 1303,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "scripts/check-installed-artifact.mjs",
+        "sha256": "62f502ea4a18a46641a7f3aca142bdb3efb7f653888fa52114b8e2cbf8b9e69e",
+        "bytes": 8220,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "src/index.ts",
+        "sha256": "3490b5ec8ebf8da8b9ef6342315f7e6b75a239783e72f68aa9759c640de21f5e",
+        "bytes": 98,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "tests/common-services.test.ts",
+        "sha256": "b1c30e8d48a7c5511b19c813aa449dd6b28b08880ed97a126a94eb34310e79cb",
+        "bytes": 5114,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "tests/load.test.ts",
+        "sha256": "2690776f6583f59d1a8a2aada8a455a6785c53123804f501c1d677150f999b4c",
+        "bytes": 5927,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "tests/minimal-consumer.ts",
+        "sha256": "b74d03233d51510dbd59a8a816e9ca8ca2695fc7639de9968b6853c302ae22df",
+        "bytes": 677,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "tests/tsconfig.json",
+        "sha256": "c8487381046b2cac542337f316ec02ca4383a52f4791a055e3231d74119c0794",
+        "bytes": 325,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      },
+      {
+        "path": "tests/uploadAdapter.test.ts",
+        "sha256": "ca2ad3e9060ffa21bd989ccf711ebfdaa160ce75bbe82750e4f5215223ba1453",
+        "bytes": 2008,
+        "status": "authored source/scaffold/adapter/fixture; UNRUN"
+      }
+    ],
+    "checksExecuted": [],
+    "sourceRemoved": false,
+    "canonicalAppConsumerAdoption": null,
+    "acceptedArtifacts": []
+  }
+}
