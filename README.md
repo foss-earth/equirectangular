@@ -1,43 +1,54 @@
 # @foss-earth/equirectangular
 
-Private version `0.1.0` source extraction from Earth
-`90e23b3ee96f53ec5900afc5991a21fffa58649d`. This tree has no accepted archive,
-validation result, clean candidate commit or consumer-adoption evidence yet.
+Full 2:1 equirectangular panorama support for FOSS Earth: representation
+records, angular coordinates, seam and pole filtering, area-average prefilters,
+source-sampling plans, GPano coverage checks, the cardinal reference panorama and
+shader sampling fragments.
 
-This owner retains full 2:1 records, angular coordinates, seam/pole filtering,
-area-average prefilters, source-sampling plans, GPano coverage checks, the exact
-cardinal reference panorama and shader sampling fragments. Its browser loader
-accepts the host's shared image broker, operation scope, acquisition/decode
-service, uploader and renderer readiness. Common codecs, color conversion and
-EXIF orientation belong to images. Target cube structure belongs to cubemap.
-The package creates no device, scene, scheduler, cache, viewer or geographic engine.
+Its browser loader works with the host's shared image broker, operation scope,
+acquisition and decode service, uploader and renderer readiness. The package
+creates no device, scene, scheduler, cache, viewer or geographic engine.
 
-Exports are `.`, `./core`, `./preparation`, `./browser`, `./babylon`, `./shaders`,
-`./schema.json` and `./package.json`. [Public contracts](docs/public-contracts.md)
-describe units, filtering and lifecycle; [validation preparation](docs/validation.md)
-describes the retained tests and isolated installed-archive harness.
+## What this repository owns
 
-`@foss-earth/images@0.1.0` is the exact staging dependency. The optional renderer
-adapter consumes `@foss-earth/renderer@0.1.0`. The test-only cubemap dependency
-routes the original mixed preparation test through the other owner's public API;
-production source does not import cubemap. These versions are not admitted
-artifact or publication pins. The primary integration agent still owns lockfile
-generation, clean human lineage, the common pinned `foss-earth/ci` attribution
-caller and conformance, checks, archive digests, publication and application adoption.
+- Equirectangular records, coordinates, preparation and shaders: this package.
+- Common codecs, color conversion and EXIF orientation:
+  [images](https://github.com/foss-earth/images).
+- Target cube structure: [cubemap](https://github.com/foss-earth/cubemap).
+- The optional Babylon adapter uses [renderer](https://github.com/foss-earth/renderer).
 
-Rollback remains available through the unchanged immutable Earth source. This
-source-only work removed no current-app implementation and changed no application
-imports. Loader callers must provide a dedicated operation scope and explicitly
-acknowledge a completed visibility swap with `settleReplacement()`.
+## Exports
 
+`.`, `./core`, `./preparation`, `./browser`, `./babylon`, `./shaders`,
+`./schema.json` and `./package.json`.
 
-## Native input lifetime source increment
+[Public contracts](docs/public-contracts.md) describe units, filtering and
+lifecycle. [Native input lifetime](docs/native-input-lifetime.md) describes how
+decoded inputs and sheet-crop face sources keep their pixels alive across awaited
+host uploads and stale texture cleanup, and how that stays compatible with the
+older behavior.
 
-The actual common decoded inputs and sheet-crop face sources now provide retained
-pixel ownership across awaited host uploads and stale texture cleanup. See
-[the exact lifetime and legacy compatibility contract](docs/native-input-lifetime.md).
-All new source fixtures and installed-consumer changes remain unrun; no current
-app adoption or backend qualification is claimed.
+## Using the loader
+
+Loader callers provide a dedicated operation scope and must acknowledge a
+completed visibility swap with `settleReplacement()`.
+
+## Dependencies
+
+- `@foss-earth/images` is a runtime dependency.
+- `@foss-earth/renderer` is an optional peer, used by the Babylon adapter.
+- `@foss-earth/cubemap` is a development dependency only. One preparation test
+  uses its public API; production code does not import it.
+
+## Development
+
+The package depends on other `@foss-earth/*` libraries by versions that are not
+published, so its own `npm install`, tests and build don't work on their own yet.
+Develop it through the app, which uses libraries straight from their checkouts
+(see [app, Local source](https://github.com/foss-earth/app#local-source)).
+
+The scripts in `package.json` are `build`, `typecheck`, `lint`, `test` and
+`typecheck:consumer`. Tests are in [tests](tests).
 
 ## Project policies
 
