@@ -1,5 +1,13 @@
 import { resizeArea, type LinearImage, type ImageSamplingPlan, type SourceSampler } from "@foss-earth/images";
 
+/**
+ * `cubePreparationPlan` puts the level it samples on its sampler under this key.
+ * Cubemap and tiled-cubemap read it and run the same sampling in one loop; a
+ * sampler without the key is read one direction at a time. The key is not part
+ * of `SourceSampler`.
+ */
+const CUBE_PREPARATION_LEVEL = Symbol.for("foss-earth.equirectangular.cubePreparationLevel");
+
 /** Halvings of an equirectangular image down to 64 wide: area averages, so each level is a correct prefilter. */
 export function equirectPyramid(image: LinearImage, minWidth = 64): readonly LinearImage[] {
   if (!Number.isSafeInteger(minWidth) || minWidth < 1) throw new RangeError("Minimum pyramid width must be a positive integer.");
@@ -27,9 +35,28 @@ export function sampleEquirect(level: LinearImage, u: number, v: number, out: Fl
   }
 }
 
+/** Math.hypot(x, y, z) as V8 14.6 computes it for three numbers (math.tq, FastMathHypot). */
+function hypot3(x: number, y: number, z: number): number {
+  const a = Math.abs(x), b = Math.abs(y), c = Math.abs(z);
+  if (a === Infinity || b === Infinity || c === Infinity) return Infinity;
+  const max = Math.max(Math.max(a, b), c);
+  if (Number.isNaN(max)) return NaN;
+  if (max === 0) return 0;
+  const powerA = (a / max) * (a / max);
+  const powerB = (b / max) * (b / max);
+  const compensation = (powerA + powerB) - powerA - powerB;
+  const powerC = (c / max) * (c / max) - compensation;
+  return Math.sqrt(powerA + powerB + powerC) * max;
+}
+
 export function equirectUv(x: number, y: number, z: number): readonly [number, number] {
-  const n = Math.hypot(x, y, z);
+  const n = hypot3(x, y, z);
   return [0.5 + Math.atan2(x, y) / (2 * Math.PI), 0.5 - Math.asin(Math.max(-1, Math.min(1, z / n))) / Math.PI];
+}
+
+function sampleDirection(level: LinearImage, x: number, y: number, z: number, out: Float32Array | Float64Array | number[]): void {
+  const n = hypot3(x, y, z);
+  sampleEquirect(level, 0.5 + Math.atan2(x, y) / (2 * Math.PI), 0.5 - Math.asin(Math.max(-1, Math.min(1, z / n))) / Math.PI, out);
 }
 
 /** A common linear-light sampler over already oriented full-sphere pixels.
@@ -42,8 +69,7 @@ export function createEquirectSourceSampler(pyramid: readonly LinearImage[]): So
       if (!Number.isFinite(footprintRadians) || footprintRadians < 0) throw new RangeError("Angular footprint must be finite nonnegative radians.");
       const ratio = pyramid[0].width * footprintRadians / (2 * Math.PI);
       const level = Math.max(0, Math.min(pyramid.length - 1, Math.floor(Math.log2(Math.max(1, ratio)))));
-      const [u, v] = equirectUv(direction[0], direction[1], direction[2]);
-      sampleEquirect(pyramid[level], u, v, out);
+      sampleDirection(pyramid[level], direction[0], direction[1], direction[2], out);
     },
   };
 }
@@ -58,13 +84,16 @@ export function cubePreparationPlan(pyramid: readonly LinearImage[], faceSize: n
   const level = Math.max(0, Math.min(pyramid.length - 1, Math.floor(Math.log2(Math.max(1, ratio)))));
   const source = pyramid[level];
   const residual = source.width / 4 / faceSize;
+  const sampler: SourceSampler = {
+    sample(direction, _footprintRadians, out) {
+      sampleDirection(source, direction[0], direction[1], direction[2], out);
+    },
+  };
+  Object.defineProperty(sampler, CUBE_PREPARATION_LEVEL, { value: source });
   return {
     samplesPerAxis: residual > 1.5 ? 3 : 2,
     footprintRadians: Math.PI / (2 * faceSize),
-    source: { sample(direction, _footprintRadians, out) {
-      const [u, v] = equirectUv(direction[0], direction[1], direction[2]);
-      sampleEquirect(source, u, v, out);
-    } },
+    source: sampler,
   };
 }
 
