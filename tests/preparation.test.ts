@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { applyOrientation, dropOpaqueAlpha, toLinearImage, toSrgbImage } from "@foss-earth/images";
 import { readGPano } from "@foss-earth/images/node";
-import { CUBE_FACE_NAMES, SOURCE_CUBE_FACES } from "@foss-earth/cubemap/core";
-import { renderCubeFace } from "@foss-earth/cubemap/preparation";
-import { createEquirectSourceSampler, cubePreparationPlan, equirectPyramid, equirectUv, makeCardinalPanorama, validatePreparationCoverage } from "../src/preparation.js";
-import { makeCardinalPanorama as originalCardinal } from "../fixtures/original-cardinal.mjs";
+import { CUBE_FACE_NAMES, SOURCE_CUBE_FACES } from "@foss-earth/sphere-cubemap/core";
+import { renderCubeFace } from "@foss-earth/sphere-cubemap/preparation";
+import { createEquirectSourceSampler, cubePreparationPlan, equirectPyramid, equirectUv, makeCardinalSphere, validatePreparationCoverage } from "../src/preparation.js";
+import { makeCardinalSphere as originalCardinal } from "../fixtures/original-cardinal.mjs";
 
 describe("retained preparation format and common source contract", () => {
   it("retains the exact original cardinal/grid/pole RGB bytes", () => {
     for (const width of [32, 128, 256]) {
-      const actual = makeCardinalPanorama(width);
+      const actual = makeCardinalSphere(width);
       const original = originalCardinal(width);
       expect(actual.width).toBe(original.width); expect(actual.height).toBe(original.height);
       expect(actual.rgb).toEqual(new Uint8Array(original.rgb));

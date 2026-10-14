@@ -1,6 +1,6 @@
 import type { RepresentationHooks } from "@foss-earth/images";
-import { equirectRepresentation } from "@foss-earth/equirectangular";
-import type { EquirectLoadPorts } from "@foss-earth/equirectangular/browser";
+import { equirectRepresentation } from "@foss-earth/sphere-equirectangular";
+import type { EquirectLoadPorts } from "@foss-earth/sphere-equirectangular/browser";
 import type { HeldDecodedImage, WholeImageTexture } from "@foss-earth/images/browser";
 const hooks: RepresentationHooks = equirectRepresentation;
 console.log(hooks.projection);

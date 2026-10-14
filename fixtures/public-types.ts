@@ -2,11 +2,11 @@ import type { RepresentationHooks, SourceSampler, ImageIdentity } from "@foss-ea
 import { createImageSourceCache, imageSourceKey } from "@foss-earth/images";
 import { createImageFileService } from "@foss-earth/images/browser";
 import type { ImageTextureUploader, UploadedImageTexture } from "@foss-earth/renderer/babylon";
-import { equirectRepresentation, type EquirectRepresentationRecord } from "@foss-earth/equirectangular";
-import { loadEquirect, type EquirectLoadPorts } from "@foss-earth/equirectangular/browser";
-import { createEquirectUploadAdapter } from "@foss-earth/equirectangular/babylon";
-import * as preparation from "@foss-earth/equirectangular/preparation";
-import * as shaders from "@foss-earth/equirectangular/shaders";
+import { equirectRepresentation, type EquirectRepresentationRecord } from "@foss-earth/sphere-equirectangular";
+import { loadEquirect, type EquirectLoadPorts } from "@foss-earth/sphere-equirectangular/browser";
+import { createEquirectUploadAdapter } from "@foss-earth/sphere-equirectangular/babylon";
+import * as preparation from "@foss-earth/sphere-equirectangular/preparation";
+import * as shaders from "@foss-earth/sphere-equirectangular/shaders";
 const hooks: RepresentationHooks<EquirectRepresentationRecord> = equirectRepresentation;
 const source: SourceSampler = { sample(_direction, _footprint, out) { out[0] = 0.5; out[1] = 0.5; out[2] = 0.5; } };
 const consume = (ports: EquirectLoadPorts<UploadedImageTexture>, record: EquirectRepresentationRecord, uploader: ImageTextureUploader, asset: ImageIdentity) => {

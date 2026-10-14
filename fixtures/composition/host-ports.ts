@@ -2,8 +2,8 @@
 import type { ImageSessionBroker, ImageOperationScope } from "@foss-earth/images";
 import type { ImageFileService } from "@foss-earth/images/browser";
 import type { ImageTextureUploader, UploadedImageTexture } from "@foss-earth/renderer/babylon";
-import { createEquirectUploadAdapter } from "@foss-earth/equirectangular/babylon";
-import type { EquirectLoadPorts } from "@foss-earth/equirectangular/browser";
+import { createEquirectUploadAdapter } from "@foss-earth/sphere-equirectangular/babylon";
+import type { EquirectLoadPorts } from "@foss-earth/sphere-equirectangular/browser";
 export function equirectHostPorts(host: {
   broker: ImageSessionBroker; scope: ImageOperationScope; files: ImageFileService;
   uploader: ImageTextureUploader; maxTextureSide: number; label: string; overlap: boolean; priority: number;

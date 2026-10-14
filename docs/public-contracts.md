@@ -48,7 +48,7 @@ apply EXIF orientation once, refuse unsupported color/alpha, convert to linear
 RGB for resampling and encode to sRGB once. This package does not infer survey
 pose or transform image-local attitude into geographic ENU.
 
-`makeCardinalPanorama(width=2048)` retains the original RGB reference image with
+`makeCardinalSphere(width=2048)` retains the original RGB reference image with
 N/E/S/W lettering, 30-degree grid and polar details. The test oracle is an exact
 immutable original function slice; tests compare the output bytes at three widths.
 

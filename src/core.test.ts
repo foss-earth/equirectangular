@@ -83,7 +83,7 @@ describe("whole equirectangular source", () => {
     const [u, v] = equirectUv(0.2, -0.4, 0.9);
     referenceSample(level, u, v, viaUv);
     expect(sameBytes(out, viaUv)).toBe(true);
-    // A flat image hides a wrong direction. This one does not.
+    // A uniform image hides a wrong direction. This one does not.
     const varied = { width: 8, height: 4, data: new Float32Array(96) };
     for (let k = 0; k < varied.data.length; k++) varied.data[k] = (k * 17 % 100) / 100;
     const variedPlan = cubePreparationPlan([varied], 2);

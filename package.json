@@ -1,5 +1,5 @@
 {
-  "name": "@foss-earth/equirectangular",
+  "name": "@foss-earth/sphere-equirectangular",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -65,7 +65,7 @@
     "eslint": "9.39.4",
     "typescript-eslint": "8.59.3",
     "@foss-earth/renderer": "0.1.0",
-    "@foss-earth/cubemap": "0.1.0"
+    "@foss-earth/sphere-cubemap": "0.1.0"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",

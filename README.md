@@ -1,8 +1,8 @@
-# @foss-earth/equirectangular
+# @foss-earth/sphere-equirectangular
 
-Full 2:1 equirectangular panorama support for FOSS Earth: representation
+Full 2:1 equirectangular sphere support for FOSS Earth: representation
 records, angular coordinates, seam and pole filtering, area-average prefilters,
-source-sampling plans, GPano coverage checks, the cardinal reference panorama and
+source-sampling plans, GPano coverage checks, the cardinal reference sphere and
 shader sampling fragments.
 
 Its browser loader works with the host's shared image broker, operation scope,
@@ -37,8 +37,15 @@ completed visibility swap with `settleReplacement()`.
 
 - `@foss-earth/images` is a runtime dependency.
 - `@foss-earth/renderer` is an optional peer, used by the Babylon adapter.
-- `@foss-earth/cubemap` is a development dependency only. One preparation test
+- `@foss-earth/sphere-cubemap` is a development dependency only. One preparation test
   uses its public API; production code does not import it.
+
+## Earlier package name
+
+This package was named `@foss-earth/equirectangular`. Nothing is published under that name
+any more: consumers import `@foss-earth/sphere-equirectangular`. Records and documents did
+not change: the `equirectangular` projection, the schema `$id` and media URLs are as before. The
+repository keeps the name `equirectangular` until it is renamed on the host.
 
 ## Development
 

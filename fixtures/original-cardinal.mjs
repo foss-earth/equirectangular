@@ -15,11 +15,11 @@ function segmentDistance(p, a, b) {
 }
 
 /**
- * The reference renderer's synthetic panorama: sky and ground, a 30° grid,
+ * The reference renderer's synthetic sphere: sky and ground, a 30° grid,
  * polar details, and the letters N, E, S and W on the horizon, which read
  * backwards wherever a mapping mirrors the image.
  */
-export function makeCardinalPanorama(width = 2048, height = width / 2) {
+export function makeCardinalSphere(width = 2048, height = width / 2) {
   const rgb = Buffer.alloc(width * height * 3);
   const letters = [["N", 0], ["E", 90], ["S", 180], ["W", 270]];
   const letterSizeDeg = 16;

@@ -15,11 +15,11 @@ function segmentDistance(p: readonly [number, number], a: readonly [number, numb
 }
 
 /**
- * The reference renderer's synthetic panorama: sky and ground, a 30° grid,
+ * The reference renderer's synthetic sphere: sky and ground, a 30° grid,
  * polar details, and the letters N, E, S and W on the horizon, which read
  * backwards wherever a mapping mirrors the image.
  */
-export function makeCardinalPanorama(width = 2048, height = width / 2): { width: number; height: number; rgb: Uint8Array } {
+export function makeCardinalSphere(width = 2048, height = width / 2): { width: number; height: number; rgb: Uint8Array } {
   if (!Number.isSafeInteger(width) || !Number.isSafeInteger(height) || width < 1 || height < 1) throw new RangeError("Cardinal image dimensions must be positive integers.");
   const rgb = new Uint8Array(width * height * 3);
   const letters: readonly (readonly [Cardinal, number])[] = [["N", 0], ["E", 90], ["S", 180], ["W", 270]];

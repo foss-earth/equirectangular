@@ -97,7 +97,7 @@ export function cubePreparationPlan(pyramid: readonly LinearImage[], faceSize: n
   };
 }
 
-export { makeCardinalPanorama } from "./cardinal.js";
+export { makeCardinalSphere } from "./cardinal.js";
 
 /** Original version-1 preparation eligibility, including explicit GPano crops. */
 export function validatePreparationCoverage(image: { width: number; height: number }, gpano: Record<string, string | number> | null): void {
