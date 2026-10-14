@@ -14,7 +14,7 @@ creates no device, scene, scheduler, cache, viewer or geographic engine.
 - Equirectangular records, coordinates, preparation and shaders: this package.
 - Common codecs, color conversion and EXIF orientation:
   [images](https://github.com/foss-earth/images).
-- Target cube structure: [cubemap](https://github.com/foss-earth/cubemap).
+- Target cube structure: [sphere-cubemap](https://github.com/foss-earth/sphere-cubemap).
 - The optional Babylon adapter uses [renderer](https://github.com/foss-earth/renderer).
 
 ## Exports
