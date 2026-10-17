@@ -8,6 +8,12 @@ import { resizeArea, type LinearImage, type ImageSamplingPlan, type SourceSample
  */
 const CUBE_PREPARATION_LEVEL = Symbol.for("foss-earth.equirectangular.cubePreparationLevel");
 
+/** Optional sampling port; callers may supply a loaded core in their worker. */
+export interface EquirectSamplingKernel {
+  sampleEquirect(level: LinearImage, u: number, v: number, out: Float32Array | Float64Array | number[]): void;
+  sampleDirection(level: LinearImage, x: number, y: number, z: number, out: Float32Array | Float64Array | number[]): void;
+}
+
 /** Halvings of an equirectangular image down to 64 wide: area averages, so each level is a correct prefilter. */
 export function equirectPyramid(image: LinearImage, minWidth = 64): readonly LinearImage[] {
   if (!Number.isSafeInteger(minWidth) || minWidth < 1) throw new RangeError("Minimum pyramid width must be a positive integer.");
@@ -20,7 +26,8 @@ export function equirectPyramid(image: LinearImage, minWidth = 64): readonly Lin
 }
 
 /** Bilinear sample with longitude wrapping and latitude clamped. */
-export function sampleEquirect(level: LinearImage, u: number, v: number, out: Float32Array | Float64Array | number[]): void {
+export function sampleEquirect(level: LinearImage, u: number, v: number, out: Float32Array | Float64Array | number[], kernel?: EquirectSamplingKernel): void {
+  if (kernel) { kernel.sampleEquirect(level, u, v, out); return; }
   const { width, height, data } = level;
   const fx = u * width - 0.5;
   const fy = Math.min(height - 1, Math.max(0, v * height - 0.5));
@@ -54,7 +61,8 @@ export function equirectUv(x: number, y: number, z: number): readonly [number, n
   return [0.5 + Math.atan2(x, y) / (2 * Math.PI), 0.5 - Math.asin(Math.max(-1, Math.min(1, z / n))) / Math.PI];
 }
 
-function sampleDirection(level: LinearImage, x: number, y: number, z: number, out: Float32Array | Float64Array | number[]): void {
+function sampleDirection(level: LinearImage, x: number, y: number, z: number, out: Float32Array | Float64Array | number[], kernel?: EquirectSamplingKernel): void {
+  if (kernel) { kernel.sampleDirection(level, x, y, z, out); return; }
   const n = hypot3(x, y, z);
   sampleEquirect(level, 0.5 + Math.atan2(x, y) / (2 * Math.PI), 0.5 - Math.asin(Math.max(-1, Math.min(1, z / n))) / Math.PI, out);
 }
@@ -62,14 +70,14 @@ function sampleDirection(level: LinearImage, x: number, y: number, z: number, ou
 /** A common linear-light sampler over already oriented full-sphere pixels.
  * The angular footprint chooses the retained area-average prefilter level.
  * EXIF and codecs belong to images; no second orientation is applied here. */
-export function createEquirectSourceSampler(pyramid: readonly LinearImage[]): SourceSampler {
+export function createEquirectSourceSampler(pyramid: readonly LinearImage[], kernel?: EquirectSamplingKernel): SourceSampler {
   if (!pyramid.length || pyramid.some(level => !Number.isSafeInteger(level.width) || !Number.isSafeInteger(level.height) || level.width < 1 || level.height < 1 || level.data.length !== level.width * level.height * 3)) throw new RangeError("A source sampler needs a nonempty linear RGB pyramid.");
   return {
     sample(direction, footprintRadians, out) {
       if (!Number.isFinite(footprintRadians) || footprintRadians < 0) throw new RangeError("Angular footprint must be finite nonnegative radians.");
       const ratio = pyramid[0].width * footprintRadians / (2 * Math.PI);
       const level = Math.max(0, Math.min(pyramid.length - 1, Math.floor(Math.log2(Math.max(1, ratio)))));
-      sampleDirection(pyramid[level], direction[0], direction[1], direction[2], out);
+      sampleDirection(pyramid[level], direction[0], direction[1], direction[2], out, kernel);
     },
   };
 }
@@ -78,7 +86,7 @@ export function createEquirectSourceSampler(pyramid: readonly LinearImage[]): So
  * Source planning preserves the original preparation prefilter and 2/3 grid.
  * A face spans a quarter turn; this function has no target-format dependency.
  */
-export function cubePreparationPlan(pyramid: readonly LinearImage[], faceSize: number): ImageSamplingPlan {
+export function cubePreparationPlan(pyramid: readonly LinearImage[], faceSize: number, kernel?: EquirectSamplingKernel): ImageSamplingPlan {
   if (!pyramid.length || !Number.isSafeInteger(faceSize) || faceSize < 1) throw new RangeError("Preparation needs a pyramid and positive face size.");
   const ratio = pyramid[0].width / 4 / faceSize;
   const level = Math.max(0, Math.min(pyramid.length - 1, Math.floor(Math.log2(Math.max(1, ratio)))));
@@ -86,7 +94,7 @@ export function cubePreparationPlan(pyramid: readonly LinearImage[], faceSize: n
   const residual = source.width / 4 / faceSize;
   const sampler: SourceSampler = {
     sample(direction, _footprintRadians, out) {
-      sampleDirection(source, direction[0], direction[1], direction[2], out);
+      sampleDirection(source, direction[0], direction[1], direction[2], out, kernel);
     },
   };
   Object.defineProperty(sampler, CUBE_PREPARATION_LEVEL, { value: source });
